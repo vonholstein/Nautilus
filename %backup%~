@@ -1,0 +1,76 @@
+#--------------------------------------
+#Installed Global Admin Authentication
+#--------------------------------------
+GA_USER="admin"
+GA_PASSWORD="epo"
+
+#-------------------
+#ePO BVT Environment
+#-------------------
+EPOSERVER="https://AutoEPOServer:8443" 
+EPOSERVER_NAME="AutoEPOServer"
+EPOSERVER_IP="172.16.220.125"
+AGENTHANDLER ="ePOVMAH01"
+AH_IP="172.16.36.76"
+CLIENT1="AutoEPOServer"
+CLIENT2="AutoClient1"
+CLIENT3="valve64"
+CLIENT1_IP="172.16.220.125"
+CLIENT1_SUBNETMASK ="255.255.255.0"
+GETMAIL="c:\getmail\getmail"
+SQL_SERVER="OCELOT"
+SQL_DNS_NAME="OCELOT.eposoap.com"
+SQL_DB_Name="ePO4_AUTOEPOSERVER"
+SQL_PORT="1433"
+SQL_USER="sa"
+SQL_PASSWORD="sa"
+SQL_NT_USER="EPOSOAP\administrator"
+SQL_NT_PASSWORD="epo"
+SQL_IP="172.16.220.122"
+ROGUE_SENSOR="Rogue System Sensor - 172.16.36.66"
+ROGUE_SENSOR2="Rogue System Sensor - 172.16.36.62"
+ROGUE_SENSOR3="Rogue System Sensor - 172.16.36.72"
+COVERED_SUBNET="172.16.220.0 "
+REVERT_SNAPSHOTS="Q:\QTPFramework\ePO\Tools\RevertBVTSnapshots.bat"
+POWER_ON_VMS="Q:\QTPFramework\ePO\Tools\PowerOnBVTVMs.bat"
+LOGLEVEL="TRACE"
+
+
+#------------------------
+ #Distributed Repositories
+#------------------------
+UNC_SHARE="\\2K3E-SQL2K5\UNC Repositories\UNC01"
+FTP_URL="2K3E-SQL2K5/FTP01"
+HTTP_URL="2K3E-SQL2K5/HTTP01"
+HTTP_SHARE="\\2K3E-SQL2K5\HTTP Repositories\HTTP01"
+	
+
+#------------------
+#Installed Products
+#------------------
+VSE="VirusScan Enterprise"
+VSE_VERSION="8.5.0"
+VSE_WORKSTATION="8.5.0.781.Wrk"
+VSE_SERVER="8.5.0.781.Srv"
+EPO_INSTALL_SCRIPT_PATH="Q:\QTPFramework\ePO\Tools\Installer.exe"
+AH_INSTALLER="Q:\QTPFramework\ePO\Tools\AHInstaller.exe"
+AH_MSI="Q:\QTPFramework\ePO\Tools\ePO4.5_build\AgentHandler\AgentHandler.msi"
+
+
+#-------------
+#PACKAGE PATHS
+#-------------
+VSE_PATH="Q:\QTPFramework\ePO\Tools\Packages\VSE_8.5.0_Build_781.Zip"
+TEST_EXTENSION="Q:\QTPFramework\ePO\Tools\Packages\cat.zip"
+COPY_AH_MSI_TO="\\ePOVMAH01\AgentHandler\AgentHandler.msi"
+COPY_AH_INSTALLER_TO="\\ePOVMAH01\AgentHandler\AHInstaller.exe"
+COPY_INI_TO="\\ePOVMAH01\AgentHandler\vars.ini"
+VARS_INI_PATH="Q:\QTPFramework\ePO\Tools\vars.ini"
+GETMAIL_PATH="Q:\QTPFramework\ePO\Tools\getmail.exe"
+COPY_GETMAIL_TO="C:\Getmail\getmail.exe"
+EXPORT_FILE="C:\reports\Export.pdf"
+EXTRADAT_PATH="Q:\QTPFramework\ePO\Tools\Packages\EXTRA.DAT"
+ENGINE_PATH="Q:\QTPFramework\ePO\Tools\Packages\Engine.zip"
+DAT_PATH="Q:\QTPFramework\ePO\Tools\Packages\DAT.zip"
+VSE80_PATH="Q:\QTPFramework\ePO\Tools\Packages\VSE_8.0.0_Build_912.zip"
+SUPERDAT_PATH="Q:\QTPFramework\ePO\Tools\Packages\SuperDat.exe"

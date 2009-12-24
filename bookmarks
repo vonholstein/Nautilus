@@ -1,0 +1,15 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("index.html"
+  (filename . "c:/reports/ePO/Functional/Debug/index.html")
+  (front-context-string . "<HTML>\n<HEAD>\n<T")
+  (rear-context-string)
+  (position . 1))
+ ("Emacs init"
+  (filename . "~/_emacs")
+  (front-context-string . ";(menu-bar-mode ")
+  (rear-context-string)
+  (position . 1)
+  (annotation . "Emacs initialization file")))

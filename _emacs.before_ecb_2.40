@@ -1,0 +1,32 @@
+;(menu-bar-mode 0)
+(tool-bar-mode 0)
+(global-font-lock-mode t)
+(setq load-path (cons "c:/home/lib/emacslib" load-path))
+(add-to-list 'load-path "c:/home/lib/emacslib/ecb")
+;(load "visual-basic-mode.el")
+;(load "vbs-repl.el")
+;(load "findr.el")
+(load-file "c:/home/lib/emacslib/cedet/common/cedet.el")
+(global-ede-mode 1)                      ; Enable the Project management system
+(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
+(global-srecode-minor-mode 1)            ; Enable template insertion menu
+
+
+(require 'visual-basic-mode)
+(require 'vbs-repl)
+(autoload 'findr "findr" "Find file name." t)
+(define-key global-map [(meta control S)] 'findr)
+
+(autoload 'findr-search "findr" "Find text in files." t)
+(define-key global-map [(meta control s)] 'findr-search)
+
+(autoload 'findr-query-replace "findr" "Replace text in files." t)
+(define-key global-map [(meta control r)] 'findr-query-replace)
+
+
+(require 'ecb)
+(require 'ecb-autoloads)
+
+
+
+

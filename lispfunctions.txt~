@@ -1,0 +1,10 @@
+beginning-of-buffer
+goto-char
+interactive
+push-mark
+buffer-size
+prefix-numeric-value
+point-min
+point-max
+forward-line
+
