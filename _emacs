@@ -55,24 +55,36 @@
 
 
 ;;;cygwin settings
+(if (string= system-name "PBECKER-PC") 
+    (setq cygwin-path "e:/cygwin"))
+
+(cond ((string= system-name "PBECKER-PC") (setq cygwin-path "e:/cygwin"))
+      ((string= system-name "VALVE64") (setq cygwin-path "c:/cygwin")))
+
 (add-hook 'comint-output-filter-functions
     'shell-strip-ctrl-m nil t)
 (add-hook 'comint-output-filter-functions
     'comint-watch-for-password-prompt nil t)
-(setq explicit-shell-file-name "C:/cygwin/bin/bash.exe")
+(setq explicit-shell-file-name (concat cygwin-path "/bin/bash.exe"))
 ;; For subprocesses invoked via the shell
 ;; (e.g., "shell -c command")
 (setq shell-file-name explicit-shell-file-name)
 ;; Add cygwin directories to the emacs search path
-(when (file-exists-p "c:/cygwin/bin")
+(when (file-exists-p (concat cygwin-path "/bin"))
 (setq exec-path (cons "C:/Program Files (x86)/Git/bin" exec-path))
-(setq exec-path (cons "C:/cygwin/bin" exec-path))
-(setq exec-path (cons "c:/cygwin/usr/local/bin" exec-path))
-(setenv "PATH" (concat "c:\\cygwin\\bin;" (getenv "PATH")))
-(setenv "PATH" (concat "c:\\cygwin\\usr\\local\\bin;" (getenv "PATH"))))
+(setq exec-path (cons (concat cygwin-path "/bin") exec-path))
+(setq exec-path (cons (concat cygwin-path "/bin") exec-path))
+(setenv "PATH" (concat "e:\\cygwin\\bin;" (getenv "PATH")))
+(setenv "PATH" (concat "e:\\cygwin\\usr\\local\\bin;" (getenv "PATH"))))
 ;;Set aspell as spell checker
 (setq-default ispell-program-name "aspell")
 
 ;;ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (autoload 'ibuffer "ibuffer" "List buffers." t)
+
+;;SLIME settings
+(setq inferior-lisp-program "~/bin/clisp/full/lisp.exe -B ~/bin/clisp/full -M ~/bin/clisp/full/lispinit.mem -ansi -q")
+(add-to-list 'load-path "~/bin/emacs/site-lisp/slime/")
+(require 'slime)
+(slime-setup)
