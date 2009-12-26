@@ -53,10 +53,11 @@
      	     (dired-goto-file dir))))))
 (put 'narrow-to-region 'disabled nil)
 
+;;set HOME variable
+(cond ((string= system-name "PBECKER-PC") (setq HOME "e:/home"))
+      ((string= system-name "VALVE64") (setq HOME "c:/home")))
 
 ;;;cygwin settings
-(if (string= system-name "PBECKER-PC") 
-    (setq cygwin-path "e:/cygwin"))
 
 (cond ((string= system-name "PBECKER-PC") (setq cygwin-path "e:/cygwin"))
       ((string= system-name "VALVE64") (setq cygwin-path "c:/cygwin")))
@@ -84,7 +85,7 @@
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
 ;;SLIME settings
-(setq inferior-lisp-program "~/bin/clisp/full/lisp.exe -B ~/bin/clisp/full -M ~/bin/clisp/full/lispinit.mem -ansi -q")
+(setq inferior-lisp-program (concat HOME "/bin/clisp/full/lisp.exe -B " HOME "/bin/clisp/full -M " HOME "/bin/clisp/full/lispinit.mem -ansi -q"))
 (add-to-list 'load-path "~/bin/emacs/site-lisp/slime/")
 (require 'slime)
 (slime-setup)
