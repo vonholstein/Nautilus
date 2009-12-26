@@ -17,19 +17,19 @@
      (color-theme-hober)))
 
 
-;;;ido-mode settings
-;; do not confirm a new file or buffer
-;; (setq confirm-nonexistent-file-or-buffer nil)
-;; (require 'ido)
-;; (ido-mode 1)
-;; (ido-everywhere 1)
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-create-new-buffer 'always)
-;; (setq ido-enable-tramp-completion nil)
-;; (setq ido-enable-last-directory-history nil)
-;; (setq ido-confirm-unique-completion nil) ;; wait for RET, even for unique?
-;; (setq ido-show-dot-for-dired t) ;; put . as the first item
-;; (setq ido-use-filename-at-point t) ;; prefer file names near point
+;;ido-mode settings
+;;do not confirm a new file or buffer
+(setq confirm-nonexistent-file-or-buffer nil)
+(require 'ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(setq ido-enable-flex-matching t)
+(setq ido-create-new-buffer 'always)
+(setq ido-enable-tramp-completion nil)
+(setq ido-enable-last-directory-history nil)
+(setq ido-confirm-unique-completion nil) ;; wait for RET, even for unique?
+(setq ido-show-dot-for-dired t) ;; put . as the first item
+(setq ido-use-filename-at-point t) ;; prefer file names near point
 
 
 ;;;dired settings
@@ -90,59 +90,7 @@
 (require 'slime)
 (slime-setup)
 
-;;CL-lookup
-(add-to-list 'load-path "~/bin/emacs/site-lisp/cl-lookup")
-;;(add-to-list 'load-path "~/bin/emacs/site-lisp")
-(add-hook 'lisp-mode-hook (lambda ()
-                            (cond ((not (featurep 'slime))
-                                   (require 'slime)
-                                   (normal-mode)))))
-
-(eval-after-load "slime"
-  '(progn
-     ;; SLIME setup
-;;     (setq slime-lisp-implementations `((clisp (concat HOME "/bin/clisp/full/lisp.exe -B " HOME "/bin/clisp/full -M " HOME "/bin/clisp/full/lispinit.mem -ansi -q"))))
-
-     (slime-setup)
-     ;; Use w3 for viewing HTML documentation
-     (setq browse-url-browser-function 'browse-url-w3)
-     ;; Use mcomplete for partial completions
-     (require 'mcomplete)
-     (turn-on-mcomplete-mode)  
-     ;; Setup CL-LOOKUP for enhanced documentation access
-     (setq cl-lookup-categories
-	   ;; basic CL documentation
-	   '(:hyperspec-index
-	     :hyperspec-chapters
-	     :format-control-characters
-	     :reader-macro-characters
-	     :loop
-	     :arguments
-	     :concepts
-	     "cl-lookup-glossary"
-	     "cl-lookup-mop"
-	     ))
-     (put 'cl-lookup
-	  'mcomplete-mode
-	  '(:method-set (mcomplete-substr-method mcomplete-prefix-method)
-			:exhibit-start-chars 1))
-     (require 'cl-lookup)
-     (defun cl-lookup (entry)
-       "View the documentation on ENTRY from the Common Lisp HyperSpec, et al."
-       (interactive (list (let ((default (cl-lookup-default-entry)))
-			    (completing-read
-			     (concat "Look up Common Lisp info"
-				     (when default (format " (%s)" default))
-				     ": ")
-			     cl-lookup-obarray #'boundp t (thing-at-point 'symbol)
-			     'cl-lookup-history default))))
-       (let* ((symbol (intern-soft (downcase entry) cl-lookup-obarray))
-	      (paths (if (and symbol (boundp symbol))
-			 (symbol-value symbol)
-		       (error "cl-lookup internal error: the path of %s is not defined"
-			      name))))
-	 (loop for (path . rest) on paths
-	       do (cl-lookup-browse path)
-	       if rest do (sleep-for 1.5))))
-     ;; Override SLIME hyperspec lookup key bindings
-     (define-key slime-mode-map (kbd "C-c C-d h") 'cl-lookup)))
+;;w3m settings
+(require 'w3m-load)
+;;set w3m as default browser
+(setq browse-url-browser-function 'w3m-browse-url)
