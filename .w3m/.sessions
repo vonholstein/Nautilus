@@ -1,0 +1,7 @@
+;;; .sessions  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
+;; This file is generated automatically by emacs-w3m v1.4.371.
+
+(("Crash recovery sessions"
+  (19254 31122 423000)
+  (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" nil nil "CLHS: Macro DEFUN"))
+  nil))

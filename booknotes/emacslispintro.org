@@ -12,4 +12,10 @@
 *** Returns the line in which point is currently at
 *** Illustrates use of save-excursion and save-restriction
 ** 6.3 Exercise with narrowing
+   
+* Notes
+
+** To search for characters within a string
+***  (while (search-forward from-string nil t)(replace-match to-string nil t)) which will run faster and will not set the mark or print anything. (You may need a more complex loop if from-string can match the null string and to-string is also null.)
+
 
