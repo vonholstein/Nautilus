@@ -1,0 +1,15 @@
+;;; .arrived  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
+;; This file is generated automatically by emacs-w3m v1.4.371.
+
+(("http://www.lispworks.com/reference/HyperSpec/Body/m_defun.htm"
+  nil
+  (16986 46316)
+  (19255 29005 889000)
+  nil
+  nil)
+ ("http://www.google.com"
+  nil
+  nil
+  (19254 31014 52000)
+  nil
+  nil))

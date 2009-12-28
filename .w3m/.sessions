@@ -2,6 +2,14 @@
 ;; This file is generated automatically by emacs-w3m v1.4.371.
 
 (("Crash recovery sessions"
-  (19254 31122 423000)
+  (19256 30250 809000)
+  (("http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" (1) (("http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" (:title "Understanding Git: Repositories") (0) :window-start 1 :position 235) ("http://www.eecs.harvard.edu/~cduan/technical/git/" (:title "Understanding Git Conceptually") (1) :referer "http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" :window-start 1916 :position 2650)) "Understanding Git: Repositories"))
+  nil)
+ ("Automatic saved sessions-1"
+  (19255 47952 155000)
+  (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (0) (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (:title "CLHS: Macro DEFUN") (0) :window-start 1 :position 711)) "CLHS: Macro DEFUN"))
+  0)
+ ("Automatic saved sessions-2"
+  (19254 63552 707000)
   (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" nil nil "CLHS: Macro DEFUN"))
   nil))
