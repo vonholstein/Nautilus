@@ -1,0 +1,7 @@
+* Chapter 1
+** Self Evaluating Object - Eg 10
+*** Is an object that evaluates to itself
+* Chapter 3
+** list, property list alias plist
+** keyword symbol - any name that starts with a colon
+** function getf
