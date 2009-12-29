@@ -1,15 +1,111 @@
 ;;; .arrived  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
 ;; This file is generated automatically by emacs-w3m v1.4.371.
 
-(("http://www.lispworks.com/reference/HyperSpec/Body/m_defun.htm"
+(("http://www.gigamonkeys.com/book/practical-a-simple-database.html"
+  "Practical: A Simple Database"
+  (16971 17196)
+  (19256 59308 690000)
   nil
-  (16986 46316)
-  (19255 29005 889000)
+  nil)
+ ("http://www.gigamonkeys.com/book"
+  "Practical Common Lisp"
+  (19155 40635)
+  (19256 59306 428000)
+  nil
+  nil)
+ ("http://www.gigamonkeys.com/book/lather-rinse-repeat-a-tour-of-the-repl.html"
+  "Lather, Rinse, Repeat: A Tour of the REPL"
+  (16971 17200)
+  (19256 59285 493000)
+  nil
+  nil)
+ ("http://www.gigamonkeys.com/book/introduction-why-lisp.html"
+  "Introduction: Why Lisp?"
+  (18186 22073)
+  (19256 57521 370000)
+  nil
+  nil)
+ ("http://www.google.co.in/search?hl=en&ie=ISO-8859-1&q=use+alt+tab+in+emacs&btnG=Search&meta="
+  "use alt tab in emacs - Google Search"
+  nil
+  (19256 55777 542000)
+  nil
+  nil)
+ ("http://www.google.co.in/search?hl=en&source=hp&ie=ISO-8859-1&q=alt+tab+in+emacs&btnG=Google+Search&meta="
+  "alt tab in emacs - Google Search"
+  nil
+  (19256 55743 222000)
+  nil
+  nil)
+ ("http://www.ourcomments.org/Emacs/EmacsW32Util.html"
+  "EmacsW32 - Adjustments for Emacs on MS Windows"
+  (18207 44206)
+  (19256 55740 991000)
+  nil
+  nil)
+ ("http://ourcomments.org/Emacs/EmacsW32.html"
+  "EmacsW32 Home Page"
+  (18951 20066)
+  (19256 55670 167000)
+  nil
+  nil)
+ ("http://ourcomments.org/Emacs/EmacsW32.html#form1"
+  nil
+  nil
+  (19256 55670 167000)
+  nil
+  nil)
+ ("http://www.northbound-train.com/emacs.html"
+  "Emacs Stuff"
+  (18804 40154)
+  (19256 55419 365000)
   nil
   nil)
  ("http://www.google.com"
   nil
   nil
-  (19254 31014 52000)
+  (19256 55378 603000)
+  nil
+  nil)
+ ("http://www.eecs.harvard.edu/~cduan/technical/git/git-5.shtml"
+  "Understanding Git: Rebasing"
+  nil
+  (19256 31357 791000)
+  nil
+  nil)
+ ("http://www.eecs.harvard.edu/~cduan/technical/git/git-4.shtml"
+  "Understanding Git: Collaborating"
+  nil
+  (19256 31036 766000)
+  nil
+  nil)
+ ("http://www.eecs.harvard.edu/~cduan/technical/git/git-3.shtml"
+  "Understanding Git: Merging"
+  nil
+  (19256 30741 207000)
+  nil
+  nil)
+ ("http://www.eecs.harvard.edu/~cduan/technical/git/git-2.shtml"
+  "Understanding Git: Branching"
+  nil
+  (19256 30383 15000)
+  nil
+  nil)
+ ("http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml"
+  "Understanding Git: Repositories"
+  nil
+  (19256 30250 639000)
+  nil
+  nil)
+ ("http://www.eecs.harvard.edu/~cduan/technical/git"
+  "Understanding Git Conceptually"
+  nil
+  (19256 30235 711000)
+  nil
+  nil)
+ ("http://www.lispworks.com/reference/HyperSpec/Body/m_defun.htm"
+  nil
+  (16986 46316)
+  (19255 29005 889000)
   nil
   nil))

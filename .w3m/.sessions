@@ -1,15 +1,23 @@
 ;;; .sessions  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
 ;; This file is generated automatically by emacs-w3m v1.4.371.
 
-(("Crash recovery sessions"
-  (19256 30250 809000)
-  (("http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" (1) (("http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" (:title "Understanding Git: Repositories") (0) :window-start 1 :position 235) ("http://www.eecs.harvard.edu/~cduan/technical/git/" (:title "Understanding Git Conceptually") (1) :referer "http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" :window-start 1916 :position 2650)) "Understanding Git: Repositories"))
-  nil)
- ("Automatic saved sessions-1"
-  (19255 47952 155000)
-  (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (0) (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (:title "CLHS: Macro DEFUN") (0) :window-start 1 :position 711)) "CLHS: Macro DEFUN"))
+(("Automatic saved sessions-1"
+  (19257 33243 454000)
+  (("http://www.gigamonkeys.com/book/practical-a-simple-database.html" (0) (("http://www.gigamonkeys.com/book/" (:title "Practical Common Lisp") (0) :window-start 1297 :position 2115 :referer "http://www.gigamonkeys.com/book/")) "Practical: A Simple Database"))
   0)
  ("Automatic saved sessions-2"
+  (19256 54307 344000)
+  (("http://www.gigamonkeys.com/book/" nil nil "Practical Common Lisp"))
+  nil)
+ ("Automatic saved sessions-3"
+  (19256 38794 334000)
+  (("http://www.eecs.harvard.edu/~cduan/technical/git/git-5.shtml" (5) (("http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" (:title "Understanding Git: Repositories") (0) :window-start 1 :position 235) ("http://www.eecs.harvard.edu/~cduan/technical/git/" (:title "Understanding Git Conceptually") (1) :referer "http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" :window-start 1916 :position 2650) ("http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" (:title "Understanding Git: Repositories") (2) :referer "http://www.eecs.harvard.edu/~cduan/technical/git/" :window-start 4735 :position 6178) ("http://www.eecs.harvard.edu/~cduan/technical/git/git-2.shtml" (:title "Understanding Git: Branching") (3) :referer "http://www.eecs.harvard.edu/~cduan/technical/git/git-1.shtml" :window-start 3691 :position 6020) ("http://www.eecs.harvard.edu/~cduan/technical/git/git-3.shtml" (:title "Understanding Git: Merging") (4) :referer "http://www.eecs.harvard.edu/~cduan/technical/git/git-2.shtml" :window-start 5905 :position 7721) ("http://www.eecs.harvard.edu/~cduan/technical/git/git-4.shtml" (:title "Understanding Git: Collaborating") (5) :referer "http://www.eecs.harvard.edu/~cduan/technical/git/git-3.shtml" :window-start 12571 :position 13245)) "Understanding Git: Rebasing"))
+  nil)
+ ("Automatic saved sessions-4"
+  (19255 47952 155000)
+  (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (0) (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (:title "CLHS: Macro DEFUN") (0) :window-start 1 :position 711)) "CLHS: Macro DEFUN"))
+  nil)
+ ("Automatic saved sessions-5"
   (19254 63552 707000)
   (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" nil nil "CLHS: Macro DEFUN"))
   nil))
