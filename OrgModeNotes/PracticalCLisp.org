@@ -1,0 +1,10 @@
+* Chapter 1
+** Self Evaluating Object - Eg 10
+*** Is an object that evaluates to itself
+* Chapter 3
+** list, property list alias plist
+** Property list is created with format (value :symbolname value :symbolname repeat)
+** keyword symbol - any name that starts with a colon
+** function getf returns value associated with symbol in a plist
+** Lisp naming convention for defining global variables - *variable-name*
+** use push macro to add items to a list

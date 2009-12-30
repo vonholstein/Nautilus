@@ -7,4 +7,5 @@ prefix-numeric-value
 point-min
 point-max
 forward-line
-
+count-lines
+what-line
