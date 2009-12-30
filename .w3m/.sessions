@@ -1,17 +1,15 @@
 ;;; .sessions  -*- mode: emacs-lisp; coding: iso-2022-7bit -*-
 ;; This file is generated automatically by emacs-w3m v1.4.371.
 
-(("Automatic saved sessions-1"
-<<<<<<< HEAD
+(("Crash recovery sessions"
+  (19259 1505 800000)
+  (("http://www.lispworks.com/documentation/HyperSpec/Body/f_rd_lin.htm" (0 0 0) (("about://bookmark/" (:title "Bookmarks") (0 0 1 0 0) :window-start 1 :position 1) ("http://www.lispworks.com/documentation/HyperSpec/Body/m_dolist.htm" (:title "CLHS: Macro DOLIST") (0) :window-start 546 :position 1548) ("http://www.lispworks.com/documentation/HyperSpec/Body/f_finish.htm" (:title "CLHS: Function FINISH-OUTPUT, FORCE-OUTPUT...") (0 0 0) :window-start 1 :position 1143)) "CLHS: Function READ-LINE"))
+  nil)
+ ("Automatic saved sessions-1"
+  <<<<<<<
+  HEAD
   (19258 63164 622000)
   (("http://www.google.co.in/" nil nil "Google"))
-  0)
- ("Crash recovery sessions"
-  (19257 46509 54000)
-  (("http://www.google.co.in/" nil nil "Google"))
-=======
-  (19258 22306 621000)
-  (("http://www.lispworks.com/documentation/HyperSpec/Body/m_dolist.htm" (0 0 0 0 0) (("about://bookmark/" (:title "Bookmarks") (0 0 0 0 0 3 1) :window-start 1 :position 1) ("http://www.google.co.in/" (:title "Google") (0) :window-start 1 :position 1 :forms ([w3m-form-object internal "http://www.google.co.in/none" nil application/x-www-form-urlencoded (1 (:value ("" . "")))] [w3m-form-object get "http://www.google.co.in/search" nil application/x-www-form-urlencoded (2 (:value ("hl" . "en")) 3 (:value ("source" . "hp")) 4 (:value ("ie" . "ISO-8859-1")) 5 (:value ("q" . "")) 9 (:value ("meta" . "")) 6 (:value ("btnG")) 7 (:value ("btnI")))])) ("http://www.gigamonkeys.com/book/" (:title "Practical Common Lisp") (0 0 0) :window-start 1 :position 2236) ("http://www.gigamonkeys.com/book/practical-a-simple-database.html" (:title "Practical: A Simple Database") (0 0 0 0 0) :window-start 6275 :position 7454 :referer "http://www.lispworks.com/documentation/HyperSpec/Body/22_c.htm")) "CLHS: Macro DOLIST"))
   0)
  ("Automatic saved sessions-2"
   (19257 33243 454000)
@@ -28,5 +26,6 @@
  ("Automatic saved sessions-5"
   (19255 47952 155000)
   (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (0) (("http://www.lispworks.com/documentation/HyperSpec/Body/m_defun.htm" (:title "CLHS: Macro DEFUN") (0) :window-start 1 :position 711)) "CLHS: Macro DEFUN"))
->>>>>>> 50680b550d8d46d72a1513c133556b0153e988e9
+  >>>>>>>
+  50680b550d8d46d72a1513c133556b0153e988e9
   nil))

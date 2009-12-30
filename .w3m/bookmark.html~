@@ -6,6 +6,9 @@
 <li><a href="http://www.gigamonkeys.com/book/">Practical Common Lisp - Title</a>
 <li><a href="http://www.lispworks.com/documentation/HyperSpec/Body/m_push.htm">CLHS: Macro PUSH</a>
 <li><a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_format.htm">CLHS: Function FORMAT</a>
+<li><a href="http://www.lispworks.com/documentation/HyperSpec/Body/m_dolist.htm">CLHS: Macro DOLIST</a>
+<li><a href="http://www.lispworks.com/">CLHS dolist</a>
+<li><a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_finish.htm#force-output">CLHS force-output</a>
 <!--End of section (do not delete this comment)-->
 </ul>
 </body>
