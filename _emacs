@@ -94,10 +94,7 @@
 (require 'w3m-load)
 ;;set w3m as default browser
 (setq browse-url-browser-function 'w3m-browse-url)
-<<<<<<< HEAD
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-
-=======
 
 
 ;;desktop.el for session management
@@ -143,4 +140,3 @@
   t " my-keys" 'my-keys-minor-mode-map)
 
 (my-keys-minor-mode 1)
-
