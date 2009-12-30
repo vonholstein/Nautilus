@@ -2,9 +2,21 @@
 ** Self Evaluating Object - Eg 10
 *** Is an object that evaluates to itself
 * Chapter 3
-** list, property list alias plist
-** Property list is created with format (value :symbolname value :symbolname repeat)
-** keyword symbol - any name that starts with a colon
-** function getf returns value associated with symbol in a plist
-** Lisp naming convention for defining global variables - *variable-name*
-** use push macro to add items to a list
++ list, property list alias plist
++ Property list is created with format (value :symbolname value :symbolname repeat)
++ keyword symbol - any name that starts with a colon
++ function getf returns value associated with symbol in a plist
++ Lisp naming convention for defining global variables - *variable-name*
++ use push macro to add items to a list
+** Format string
++ format used to print - (format stream formatstring varargs)
++ t is shortand for *standard-output*
++ Various directives available for use within format string
+  - ~a : aesthetic directive, consumes one argument and outputs it in human readable form.
+  - ~t : tabulation, eg ~10t emits enough spaces to move to the tenth column before processing the next ~a, does not conumse nay arguments
+  - ~{ : next argument consumed must be a list, format loops over list processing directives between ~{ and ~}
+** User Interaction
++ *query-io* is the stream argument to format for io
++ force-output function: necessary in some lisp implementations to ensure that Lisp doesn't wait for a newline before printing prompt
++ read-line function: returns string read (without trailing newline)
++ 
