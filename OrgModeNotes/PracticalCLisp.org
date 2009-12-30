@@ -19,4 +19,4 @@
 + *query-io* is the stream argument to format for io
 + force-output function: necessary in some lisp implementations to ensure that Lisp doesn't wait for a newline before printing prompt
 + read-line function: returns string read (without trailing newline)
-+ dlkfj
+
