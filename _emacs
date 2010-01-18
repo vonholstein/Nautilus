@@ -54,29 +54,30 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;;set HOME variable
-(cond ((string= system-name "PBECKER-PC") (setq HOME "e:/home"))
-      ((string= system-name "VALVE64") (setq HOME "c:/home")))
+ (cond ((string= system-name "PBECKER-PC") (setq HOME "e:/home"))
+       ((string= system-name "VALVE64") (setq HOME "c:/home")))
 
 ;;;cygwin settings
 
-(cond ((string= system-name "PBECKER-PC") (setq cygwin-path "e:/cygwin"))
-      ((string= system-name "VALVE64") (setq cygwin-path "c:/cygwin")))
+ (cond ((string= system-name "PBECKER-PC") (setq cygwin-path "e:/cygwin"))
+       ((string= system-name "VALVE64") (setq cygwin-path "c:/cygwin")))
 
 (add-hook 'comint-output-filter-functions
     'shell-strip-ctrl-m nil t)
 (add-hook 'comint-output-filter-functions
     'comint-watch-for-password-prompt nil t)
 (setq explicit-shell-file-name (concat cygwin-path "/bin/bash.exe"))
+
 ;; For subprocesses invoked via the shell
 ;; (e.g., "shell -c command")
 (setq shell-file-name explicit-shell-file-name)
 ;; Add cygwin directories to the emacs search path
-(when (file-exists-p (concat cygwin-path "/bin"))
-(setq exec-path (cons "C:/Program Files (x86)/Git/bin" exec-path))
-(setq exec-path (cons (concat cygwin-path "/bin") exec-path))
-(setq exec-path (cons (concat cygwin-path "/bin") exec-path))
-(setenv "PATH" (concat "e:\\cygwin\\bin;" (getenv "PATH")))
-(setenv "PATH" (concat "e:\\cygwin\\usr\\local\\bin;" (getenv "PATH"))))
+;; (when (file-exists-p (concat cygwin-path "/bin"))
+;; (setq exec-path (cons "C:/Program Files (x86)/Git/bin" exec-path))
+;; (setq exec-path (cons (concat cygwin-path "/bin") exec-path))
+;; (setq exec-path (cons (concat cygwin-path "/bin") exec-path))
+;; (setenv "PATH" (concat "e:\\cygwin\\bin;" (getenv "PATH")))
+;; (setenv "PATH" (concat "e:\\cygwin\\usr\\local\\bin;" (getenv "PATH"))))
 ;;Set aspell as spell checker
 (setq-default ispell-program-name "aspell")
 
@@ -140,3 +141,25 @@
   t " my-keys" 'my-keys-minor-mode-map)
 
 (my-keys-minor-mode 1)
+
+;;VB mode
+(require 'visual-basic-mode)
+
+;;Org mode
+(add-to-list 'auto-mode-alist '("\\.org" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cb" 'org-iswitchb)
+(setq org-log-done t)
+(setq org-agenda-files (list "~/OrgModeNotes/MasterIndex.org" "~/OrgModeNotes/work.org" "~/OrgModeNotes/pers.org"))
+(setq org-todo-keywords '((sequence "TODO(t)" "MAYBE(m)" "WAITING(w@/!)" "NEXT(n@)" "|" "DONE(d)")))
+(setq org-enforce-todo-dependencies t)
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning)
+	("MAYBE" . shadow)
+	("WAITING" . (:foreground "yellow" :weight bold))
+	("NEXT" . (:foreground "blue" :weight bold))
+       )
+)
+	
+
