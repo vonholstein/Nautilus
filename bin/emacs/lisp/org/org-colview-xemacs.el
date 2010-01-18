@@ -1,4 +1,4 @@
-;;; org-colview.el --- Column View in Org-mode
+;;; org-colview-xemacs.el --- Column View in Org-mode, XEmacs-specific version
 
 ;; Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009
 ;;   Free Software Foundation, Inc.
@@ -10,10 +10,10 @@
 ;;
 ;; This file is part of GNU Emacs.
 ;;
-;; GNU Emacs is free software: you can redistribute it and/or modify
+;; GNU Emacs is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
 
 ;; GNU Emacs is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,7 +21,9 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Commentary:
@@ -34,7 +36,140 @@
 (require 'org)
 
 (declare-function org-agenda-redo "org-agenda" ())
-(declare-function org-agenda-do-context-action "org-agenda" ())
+
+
+;;; Define additional faces for column view
+
+(when (featurep 'xemacs)
+
+  (defface org-columns-level-1;; font-lock-function-name-face
+    (org-compatible-face
+        'outline-1
+      '((((class color) (min-colors 88) (background light)) (:foreground "Blue1" :background "grey90"))
+        (((class color) (min-colors 88) (background dark)) (:foreground "LightSkyBlue" :background "grey30"))
+        (((class color) (min-colors 16) (background light)) (:foreground "Blue" :background "grey90"))
+        (((class color) (min-colors 16) (background dark)) (:foreground "LightSkyBlue" :background "grey30"))
+        (((class color) (min-colors 8)) (:foreground "blue" :bold t))
+        (t (:bold t))))
+    "Face used for columns-level 1 headlines."
+    :group 'org-faces)
+
+  (defface org-columns-level-2;; font-lock-variable-name-face
+    (org-compatible-face
+        'outline-2
+      '((((class color) (min-colors 16) (background light)) (:foreground "DarkGoldenrod" :background "grey90"))
+        (((class color) (min-colors 16) (background dark))  (:foreground "LightGoldenrod" :background "grey30"))
+        (((class color) (min-colors 8)  (background light)) (:foreground "yellow" :background "grey90"))
+        (((class color) (min-colors 8)  (background dark))  (:foreground "yellow" :bold t))
+        (t (:bold t))))
+    "Face used for columns-level 2 headlines."
+    :group 'org-faces)
+
+  (defface org-columns-level-3;; font-lock-keyword-face
+    (org-compatible-face
+        'outline-3
+      '((((class color) (min-colors 88) (background light)) (:foreground "Purple" :background "grey90"))
+        (((class color) (min-colors 88) (background dark))  (:foreground "Cyan1" :background "grey30"))
+        (((class color) (min-colors 16) (background light)) (:foreground "Purple" :background "grey90"))
+        (((class color) (min-colors 16) (background dark))  (:foreground "Cyan" :background "grey30"))
+        (((class color) (min-colors 8)  (background light)) (:foreground "purple" :bold t))
+        (((class color) (min-colors 8)  (background dark))  (:foreground "cyan" :bold t))
+        (t (:bold t))))
+    "Face used for columns-level 3 headlines."
+    :group 'org-faces)
+
+  (defface org-columns-level-4;; font-lock-comment-face
+    (org-compatible-face
+        'outline-4
+      '((((class color) (min-colors 88) (background light)) (:foreground "Firebrick" :background "grey90"))
+        (((class color) (min-colors 88) (background dark))  (:foreground "chocolate1" :background "grey30"))
+        (((class color) (min-colors 16) (background light)) (:foreground "red"))
+        (((class color) (min-colors 16) (background dark))  (:foreground "red1"))
+        (((class color) (min-colors 8) (background light))  (:foreground "red" :bold t))
+        (((class color) (min-colors 8) (background dark))   (:foreground "red" :bold t))
+        (t (:bold t))))
+    "Face used for columns-level 4 headlines."
+    :group 'org-faces)
+
+  (defface org-columns-level-5;; font-lock-type-face
+    (org-compatible-face
+        'outline-5
+      '((((class color) (min-colors 16) (background light)) (:foreground "ForestGreen" :background "grey90"))
+        (((class color) (min-colors 16) (background dark)) (:foreground "PaleGreen" :background "grey30"))
+        (((class color) (min-colors 8)) (:foreground "green"))))
+    "Face used for columns-level 5 headlines."
+    :group 'org-faces)
+
+  (defface org-columns-level-6;; font-lock-constant-face
+    (org-compatible-face
+        'outline-6
+      '((((class color) (min-colors 16) (background light)) (:foreground "CadetBlue" :background "grey90"))
+        (((class color) (min-colors 16) (background dark)) (:foreground "Aquamarine" :background "grey30"))
+        (((class color) (min-colors 8)) (:foreground "magenta"))))
+    "Face used for columns-level 6 headlines."
+    :group 'org-faces)
+
+  (defface org-columns-level-7;; font-lock-builtin-face
+    (org-compatible-face
+        'outline-7
+      '((((class color) (min-colors 16) (background light)) (:foreground "Orchid" :background "grey90"))
+        (((class color) (min-colors 16) (background dark)) (:foreground "LightSteelBlue" :background "grey30"))
+        (((class color) (min-colors 8)) (:foreground "blue"))))
+    "Face used for columns-level 7 headlines."
+    :group 'org-faces)
+
+  (defface org-columns-level-8;; font-lock-string-face
+    (org-compatible-face
+        'outline-8
+      '((((class color) (min-colors 16) (background light)) (:foreground "RosyBrown" :background "grey90"))
+        (((class color) (min-colors 16) (background dark)) (:foreground "LightSalmon" :background "grey30"))
+        (((class color) (min-colors 8)) (:foreground "green"))))
+    "Face used for columns-level 8 headlines."
+    :group 'org-faces)
+
+
+  (defface org-columns-space;; font-lock-function-name-face
+    (org-compatible-face
+        'outline-1
+      '((((class color) (min-colors 88) (background light)) (:background "grey90"))
+        (((class color) (min-colors 88) (background dark))  (:background "grey30"))
+        (((class color) (min-colors 16) (background light)) (:background "grey90"))
+        (((class color) (min-colors 16) (background dark)) (:background "grey30"))
+        (((class color) (min-colors 8)) (:bold t :underline t))))
+    "Face used for columns space headlines."
+    :group 'org-faces)
+
+  (defface org-columns-space1;; font-lock-function-name-face
+    (org-compatible-face
+        'outline-1
+      '((((class color) (min-colors 88) (background light)) (:background "grey90"))
+        (((class color) (min-colors 88) (background dark))  (:background "grey30"))
+        (((class color) (min-colors 16) (background light)) (:background "grey90"))
+        (((class color) (min-colors 16) (background dark)) (:background "grey30"))
+        (((class color) (min-colors 8)) (:bold t :underline t))))
+    "Face used for columns space headlines."
+    :group 'org-faces)
+  )
+
+(when (featurep 'xemacs)
+  (defconst org-columns-level-faces
+    '(org-columns-level-1
+      org-columns-level-2 org-columns-level-3
+      org-columns-level-4 org-columns-level-5 org-columns-level-6
+      org-columns-level-7 org-columns-level-8
+      ))
+
+  (defun org-get-columns-level-face (n)
+    "Get the right face for match N in font-lock matching of headlines."
+    (setq org-l (- (match-end 2) (match-beginning 1) 1))
+    (if org-odd-levels-only (setq org-l (1+ (/ org-l 2))))
+    (setq org-f (nth (% (1- org-l) org-n-level-faces) org-columns-level-faces))
+    (cond
+     ((eq n 1) (if org-hide-leading-stars 'org-hide org-f))
+     ((eq n 2) org-f)
+     (t (if org-level-color-stars-only nil org-f))))
+  )
+
 
 ;;; Column View
 
@@ -78,32 +213,12 @@ This is the compiled version of the format.")
 (org-defkey org-columns-map "q" 'org-columns-quit)
 (org-defkey org-columns-map "r" 'org-columns-redo)
 (org-defkey org-columns-map "g" 'org-columns-redo)
-(org-defkey org-columns-map [left] 'backward-char)
-(org-defkey org-columns-map "\M-b" 'backward-char)
+(org-defkey org-columns-map [left] 'org-columns-backward-char)
+(org-defkey org-columns-map "\M-b" 'org-columns-backward-char)
 (org-defkey org-columns-map "a" 'org-columns-edit-allowed)
 (org-defkey org-columns-map "s" 'org-columns-edit-attributes)
-(org-defkey org-columns-map "\M-f"
-	    (lambda () (interactive) (goto-char (1+ (point)))))
-(org-defkey org-columns-map [right]
-	    (lambda () (interactive) (goto-char (1+ (point)))))
-(org-defkey org-columns-map [down]
-	    (lambda () (interactive)
-	      (let ((col (current-column)))
-		(beginning-of-line 2)
-		(while (and (org-invisible-p2) (not (eobp)))
-		  (beginning-of-line 2))
-		(move-to-column col)
-		(if (eq major-mode 'org-agenda-mode)
-		    (org-agenda-do-context-action)))))
-(org-defkey org-columns-map [up]
-	    (lambda () (interactive)
-	      (let ((col (current-column)))
-		(beginning-of-line 0)
-		(while (and (org-invisible-p2) (not (bobp)))
-		  (beginning-of-line 0))
-		(move-to-column col)
-		(if (eq major-mode 'org-agenda-mode)
-		    (org-agenda-do-context-action)))))
+(org-defkey org-columns-map "\M-f" 'org-columns-forward-char)
+(org-defkey org-columns-map [right] 'org-columns-forward-char)
 (org-defkey org-columns-map [(shift right)] 'org-columns-next-allowed-value)
 (org-defkey org-columns-map "n" 'org-columns-next-allowed-value)
 (org-defkey org-columns-map [(shift left)] 'org-columns-previous-allowed-value)
@@ -116,8 +231,8 @@ This is the compiled version of the format.")
 (org-defkey org-columns-map [(shift meta left)] 'org-columns-delete)
 (dotimes (i 10)
   (org-defkey org-columns-map (number-to-string i)
-	      `(lambda () (interactive)
-		 (org-columns-next-allowed-value nil ,i))))
+              `(lambda () (interactive)
+                 (org-columns-next-allowed-value nil ,i))))
 
 (easy-menu-define org-columns-menu org-columns-map "Org Column Menu"
   '("Column"
@@ -144,15 +259,44 @@ This is the compiled version of the format.")
     "--"
     ["Quit" org-columns-quit t]))
 
+(defun org-columns-current-column ()
+  (if (featurep 'xemacs)
+      (/ (current-column) 2)
+    (current-column)))
+
+(defun org-columns-forward-char ()
+  (interactive)
+  (forward-char)
+  (if (featurep 'xemacs)
+      (while (not (or (eolp)
+                      (member (extent-at
+			       (point) (current-buffer)
+			       'org-columns-key) org-columns-overlays)))
+        (forward-char))))
+
+(defun org-columns-backward-char ()
+  (interactive)
+  (backward-char)
+  (if (featurep 'xemacs)
+      (while (not (or (bolp)
+                      (member (extent-at (point) (current-buffer) 'org-columns-key) org-columns-overlays)))
+        (backward-char))))
+
 (defun org-columns-new-overlay (beg end &optional string face)
   "Create a new column overlay and add it to the list."
   (let ((ov (org-make-overlay beg end)))
-    (org-overlay-put ov 'face (or face 'secondary-selection))
-    (org-overlay-display ov string face)
+    (if (featurep 'xemacs)
+        (progn
+          (org-overlay-put ov 'face (or face 'org-columns-space1))
+          (org-overlay-put ov 'start-open t)
+          (if string
+              (org-overlay-display ov string (or face 'org-columns-space1))))
+      (org-overlay-put ov 'face (or face 'secondary-selection))
+      (org-overlay-display ov string face))
     (push ov org-columns-overlays)
     ov))
 
-(defun org-columns-display-here (&optional props dateline)
+(defun org-columns-display-here (&optional props)
   "Overlay the current line with column display."
   (interactive)
   (let* ((fmt org-columns-current-fmt-compiled)
@@ -161,13 +305,23 @@ This is the compiled version of the format.")
 		       (beginning-of-line 1)
 		       (and (looking-at "\\(\\**\\)\\(\\* \\)")
 			    (org-get-level-face 2))))
-	 (ref-face (or level-face
-		       (and (eq major-mode 'org-agenda-mode)
-			    (get-text-property (point-at-bol) 'face))
-		       'default))
-	 (color (list :foreground (face-attribute ref-face :foreground)))
-	 (face (list color 'org-column ref-face))
-	 (face1 (list color 'org-agenda-column-dateline ref-face))
+         (item (save-match-data
+                 (org-no-properties
+                  (org-remove-tabs
+                   (buffer-substring-no-properties
+                    (point-at-bol) (point-at-eol))))))
+	 (color (if (featurep 'xemacs)
+                    (save-excursion
+                      (beginning-of-line 1)
+                      (and (looking-at "\\(\\**\\)\\(\\* \\)")
+                           (org-get-columns-level-face 2)))
+		  (list :foreground
+			(face-attribute
+			 (or level-face
+			     (and (eq major-mode 'org-agenda-mode)
+				  (get-text-property (point-at-bol) 'face))
+			     'default) :foreground))))
+	 (face (if (featurep 'xemacs) color (list color 'org-column)))
 	 (pl (or (get-text-property (point-at-bol) 'prefix-length) 0))
 	 (cphr (get-text-property (point-at-bol) 'org-complex-heading-regexp))
 	 pom property ass width f string ov column val modval s2 title calc)
@@ -183,19 +337,15 @@ This is the compiled version of the format.")
       (setq property (car column)
 	    title (nth 1 column)
 	    ass (if (equal property "ITEM")
-		    (cons "ITEM"
-			  (save-match-data
-			    (org-no-properties
-			     (org-remove-tabs
-			      (buffer-substring-no-properties
-			       (point-at-bol) (point-at-eol))))))
+		    (cons "ITEM" item)
 		  (assoc property props))
 	    width (or (cdr (assoc property org-columns-current-maxwidths))
 		      (nth 2 column)
 		      (length property))
-	    f (format "%%-%d.%ds | " width width)
-	    calc (nth 7 column)
+	    f (format (if (featurep 'xemacs) "%%-%d.%ds |" "%%-%d.%ds | ")
+		      width width)
 	    val (or (cdr ass) "")
+	    calc (nth 7 column)
 	    modval (cond ((and org-columns-modify-value-for-display-function
 			       (functionp
 				org-columns-modify-value-for-display-function))
@@ -219,31 +369,46 @@ This is the compiled version of the format.")
       ;; Create the overlay
       (org-unmodified
        (setq ov (org-columns-new-overlay
-		 beg (setq beg (1+ beg)) string (if dateline face1 face)))
+		 beg (setq beg (1+ beg)) string face))
        (org-overlay-put ov 'keymap org-columns-map)
        (org-overlay-put ov 'org-columns-key property)
        (org-overlay-put ov 'org-columns-value (cdr ass))
        (org-overlay-put ov 'org-columns-value-modified modval)
        (org-overlay-put ov 'org-columns-pom pom)
-       (org-overlay-put ov 'org-columns-format f))
+       (org-overlay-put ov 'org-columns-format f)
+       (when (featurep 'xemacs)
+	 (if (or (not (char-after beg))
+		 (equal (char-after beg) ?\n))
+	     (let ((inhibit-read-only t))
+	       (save-excursion
+		 (goto-char beg)
+		 (org-unmodified (insert " "))
+		 ;; FIXME: add props and remove later?
+		 )))
+         (goto-char beg)
+         (org-columns-new-overlay
+          beg (1+ beg) nil 'org-columns-space)
+         (setq beg (1+ beg))))
+
       (if (or (not (char-after beg))
 	      (equal (char-after beg) ?\n))
 	  (let ((inhibit-read-only t))
 	    (save-excursion
 	      (goto-char beg)
-	      (org-unmodified (insert " ")))))) ;; FIXME: add props and remove later?
-      ;; Make the rest of the line disappear.
-      (org-unmodified
-       (setq ov (org-columns-new-overlay beg (point-at-eol)))
-       (org-overlay-put ov 'invisible t)
-       (org-overlay-put ov 'keymap org-columns-map)
-       (org-overlay-put ov 'intangible t)
-       (push ov org-columns-overlays)
-       (setq ov (org-make-overlay (1- (point-at-eol)) (1+ (point-at-eol))))
-       (org-overlay-put ov 'keymap org-columns-map)
-       (push ov org-columns-overlays)
-       (let ((inhibit-read-only t))
-	 (put-text-property (max (point-min) (1- (point-at-bol)))
+	      ;; FIXME: add props and remove later?
+	      (org-unmodified (insert " "))))))
+    ;; Make the rest of the line disappear.
+    (org-unmodified
+     (setq ov (org-columns-new-overlay beg (point-at-eol)))
+     (org-overlay-put ov 'invisible t)
+     (org-overlay-put ov 'keymap org-columns-map)
+     (org-overlay-put ov 'intangible t)
+     (push ov org-columns-overlays)
+     (setq ov (org-make-overlay (1- (point-at-eol)) (1+ (point-at-eol))))
+     (org-overlay-put ov 'keymap org-columns-map)
+     (push ov org-columns-overlays)
+     (let ((inhibit-read-only t))
+       (put-text-property (max (point-min) (1- (point-at-bol)))
 			  (min (point-max) (1+ (point-at-eol)))
 			  'read-only "Type `e' to edit property")))))
 
@@ -262,10 +427,7 @@ This is the compiled version of the format.")
   "The header line format before column view was turned on.")
 (defvar org-columns-inhibit-recalculation nil
   "Inhibit recomputing of columns on column view startup.")
-(defvar org-columns-flyspell-was-active nil
-  "Remember the state of `flyspell-mode' before column view.
-Flyspell-mode can cause problems in columns view, so it is turned off
-for the duration of the command.")
+
 
 (defvar header-line-format)
 (defvar org-columns-previous-hscroll 0)
@@ -286,16 +448,23 @@ for the duration of the command.")
 	    f (format "%%-%d.%ds | " width width)
 	    string (format f str)
 	    title (concat title string)))
-    (setq title (concat
-		 (org-add-props " " nil 'display '(space :align-to 0))
-		 ;;(org-add-props title nil 'face '(:weight bold :underline t :inherit default))))
-		 (org-add-props title nil 'face 'org-column-title)))
-    (org-set-local 'org-previous-header-line-format header-line-format)
-    (org-set-local 'org-columns-current-widths (nreverse widths))
-    (setq org-columns-full-header-line-format title)
-    (setq org-columns-previous-hscroll -1)
-;    (org-columns-hscoll-title)
-    (org-add-hook 'post-command-hook 'org-columns-hscoll-title nil 'local)))
+    (if (featurep 'xemacs)
+        (let ((ext (make-extent nil nil)))
+          (set-extent-endpoints ext 0 (length title) title)
+          (set-extent-face ext (list 'bold 'underline 'org-columns-space1))
+          (org-set-local 'org-previous-header-line-format
+			 (specifier-specs top-gutter))
+          (org-set-local 'org-columns-current-widths (nreverse widths))
+          (set-specifier top-gutter (make-gutter-specifier
+				     (cons (current-buffer) title))))
+      (setq title (concat
+                   (org-add-props " " nil 'display '(space :align-to 0))
+                   (org-add-props title nil 'face '(:weight bold :underline t))))
+      (org-set-local 'org-previous-header-line-format header-line-format)
+      (org-set-local 'org-columns-current-widths (nreverse widths))
+      (setq org-columns-full-header-line-format title)
+      (setq org-columns-previous-hscroll -1)
+      (org-add-hook 'post-command-hook 'org-columns-hscoll-title nil 'local))))
 
 (defun org-columns-hscoll-title ()
   "Set the header-line-format so that it scrolls along with the table."
@@ -316,10 +485,15 @@ for the duration of the command.")
   (interactive)
   (when (marker-buffer org-columns-begin-marker)
     (with-current-buffer (marker-buffer org-columns-begin-marker)
-      (when (local-variable-p 'org-previous-header-line-format)
-	(setq header-line-format org-previous-header-line-format)
-	(kill-local-variable 'org-previous-header-line-format)
-	(remove-hook 'post-command-hook 'org-columns-hscoll-title 'local))
+      (when (local-variable-p 'org-previous-header-line-format (current-buffer))
+	(if (featurep 'xemacs)
+	    (set-specifier top-gutter
+			   (make-gutter-specifier
+			    (cons (current-buffer)
+				  (cdar org-previous-header-line-format))))
+	  (setq header-line-format org-previous-header-line-format)
+	  (remove-hook 'post-command-hook 'org-columns-hscoll-title 'local))
+	(kill-local-variable 'org-previous-header-line-format))
       (move-marker org-columns-begin-marker nil)
       (move-marker org-columns-top-level-marker nil)
       (org-unmodified
@@ -327,10 +501,10 @@ for the duration of the command.")
        (setq org-columns-overlays nil)
        (let ((inhibit-read-only t))
 	 (remove-text-properties (point-min) (point-max) '(read-only t))))
-      (when org-columns-flyspell-was-active
-	(flyspell-mode 1))
-      (when (local-variable-p 'org-colview-initial-truncate-line-value)
+      (when (local-variable-p 'org-colview-initial-truncate-line-value
+			      (current-buffer))
 	(setq truncate-lines org-colview-initial-truncate-line-value)))))
+
 
 (defun org-columns-cleanup-item (item fmt)
   "Remove from ITEM what is a column in the format FMT."
@@ -424,12 +598,12 @@ Where possible, use the standard interface for changing this line."
 	 (value (get-char-property (point) 'org-columns-value))
 	 (bol (point-at-bol)) (eol (point-at-eol))
 	 (pom (or (get-text-property bol 'org-hd-marker)
-		  (point))) ; keep despite of compiler waring
+		  (point))) ; keep despite of compiler warning
 	 (line-overlays
 	  (delq nil (mapcar (lambda (x)
-			      (and (eq (overlay-buffer x) (current-buffer))
-				   (>= (overlay-start x) bol)
-				   (<= (overlay-start x) eol)
+			      (and (eq (org-overlay-buffer x) (current-buffer))
+				   (>= (org-overlay-start x) bol)
+				   (<= (org-overlay-start x) eol)
 				   x))
 			    org-columns-overlays)))
 	 (org-columns-time (time-to-number-of-days (current-time)))
@@ -438,30 +612,29 @@ Where possible, use the standard interface for changing this line."
      ((equal key "CLOCKSUM")
       (error "This special column cannot be edited"))
      ((equal key "ITEM")
-      (setq eval '(org-with-point-at pom
-		    (org-edit-headline))))
+      (setq eval '(org-with-point-at pom (org-edit-headline))))
      ((equal key "TODO")
       (setq eval '(org-with-point-at
 		   pom
 		   (call-interactively 'org-todo))))
      ((equal key "PRIORITY")
       (setq eval '(org-with-point-at pom
-		    (call-interactively 'org-priority))))
+				     (call-interactively 'org-priority))))
      ((equal key "TAGS")
-      (setq eval '(org-with-point-at pom
-		    (let ((org-fast-tag-selection-single-key
-			   (if (eq org-fast-tag-selection-single-key 'expert)
-			       t org-fast-tag-selection-single-key)))
-		      (call-interactively 'org-set-tags)))))
+      (setq eval '(org-with-point-at
+		   pom
+		   (let ((org-fast-tag-selection-single-key
+			  (if (eq org-fast-tag-selection-single-key 'expert)
+			      t org-fast-tag-selection-single-key)))
+		     (call-interactively 'org-set-tags)))))
      ((equal key "DEADLINE")
-      (setq eval '(org-with-point-at pom
-		    (call-interactively 'org-deadline))))
+      (setq eval '(org-with-point-at
+		   pom
+		   (call-interactively 'org-deadline))))
      ((equal key "SCHEDULED")
-      (setq eval '(org-with-point-at pom
-		    (call-interactively 'org-schedule))))
-     ((equal key "BEAMER_env")
-      (setq eval '(org-with-point-at pom
-		    (call-interactively 'org-beamer-set-environment-tag))))
+      (setq eval '(org-with-point-at
+		   pom
+		   (call-interactively 'org-schedule))))
      (t
       (setq allowed (org-property-get-allowed-values pom key 'table))
       (if allowed
@@ -572,9 +745,9 @@ an integer, select that value."
 		  (point))) ; keep despite of compiler waring
 	 (line-overlays
 	  (delq nil (mapcar (lambda (x)
-			      (and (eq (overlay-buffer x) (current-buffer))
-				   (>= (overlay-start x) bol)
-				   (<= (overlay-start x) eol)
+			      (and (eq (org-overlay-buffer x) (current-buffer))
+				   (>= (org-overlay-start x) bol)
+				   (<= (org-overlay-start x) eol)
 				   x))
 			    org-columns-overlays)))
 	 (allowed (or (org-property-get-allowed-values pom key)
@@ -655,9 +828,9 @@ around it."
 (defun org-verify-version (task)
   (cond
    ((eq task 'columns)
-    (if (or (featurep 'xemacs)
-	    (< emacs-major-version 22))
-	(error "Emacs 22 is required for the columns feature")))))
+    (if (or (and (featurep 'xemacs) (not (featurep 'org-colview-xemacs)))
+	    (and (not (featurep 'xemacs)) (< emacs-major-version 22)))
+	(error "This version of Emacs cannot run Column View")))))
 
 (defun org-columns-open-link (&optional arg)
   (interactive "P")
@@ -681,6 +854,9 @@ around it."
   "Turn on column view on an org-mode file."
   (interactive)
   (org-verify-version 'columns)
+  (when (featurep 'xemacs)
+    (set-face-foreground 'org-columns-space
+			 (face-background 'org-columns-space)))
   (org-columns-remove-overlays)
   (move-marker org-columns-begin-marker (point))
   (let ((org-columns-time (time-to-number-of-days (current-time)))
@@ -709,10 +885,8 @@ around it."
 	(setq maxwidths (org-columns-get-autowidth-alist fmt cache))
 	(org-set-local 'org-columns-current-maxwidths maxwidths)
 	(org-columns-display-here-title)
-	(when (org-set-local 'org-columns-flyspell-was-active
-			     (org-bound-and-true-p flyspell-mode))
-	  (flyspell-mode 0))
-	(unless (local-variable-p 'org-colview-initial-truncate-line-value)
+	(unless (local-variable-p 'org-colview-initial-truncate-line-value
+				  (current-buffer))
 	  (org-set-local 'org-colview-initial-truncate-line-value
 			 truncate-lines))
 	(setq truncate-lines t)
@@ -745,24 +919,26 @@ around it."
      (lambda (&rest x) (/ (apply '+ x) (float (length x))))
      (lambda (x) (- org-columns-time x))))
   "Operator <-> format,function,calc  map.
-Used to compile/uncompile columns format and completing read in
-interactive function org-columns-new.
+ Used to compile/uncompile columns format and completing read in
+ interactive function org-columns-new.
 
-operator    string used in #+COLUMNS definition describing the
-	    summary type
-format      symbol describing summary type selected interactively in
-	    org-columns-new and internally in
-	    org-columns-number-to-string and
-	    org-columns-string-to-number
-function    called with a list of values as argument to calculate
-	    the summary value
-calc        function called on every element before summarizing. This is
-	    optional and should only be specified if needed")
+ operator    string used in #+COLUMNS definition describing the
+	     summary type
+ format      symbol describing summary type selected interactively in
+	     org-columns-new and internally in
+	     org-columns-number-to-string and
+	     org-columns-string-to-number
+ function    called with a list of values as argument to calculate
+	     the summary value
+ calc        function called on every element before summarizing. This is
+	     optional and should only be specified if needed")
+
 
 (defun org-columns-new (&optional prop title width op fmt fun &rest rest)
   "Insert a new column, to the left of the current column."
   (interactive)
-  (let ((editp (and prop (assoc prop org-columns-current-fmt-compiled)))
+  (let ((n (org-columns-current-column))
+	(editp (and prop (assoc prop org-columns-current-fmt-compiled)))
 	cell)
     (setq prop (org-icompleting-read
 		"Property: " (mapcar 'list (org-buffer-property-keys t nil t))
@@ -772,11 +948,9 @@ calc        function called on every element before summarizing. This is
     (if (string-match "\\S-" width)
 	(setq width (string-to-number width))
       (setq width nil))
-    (setq fmt (org-icompleting-read
-	       "Summary [none]: "
-	       (mapcar (lambda (x) (list (symbol-name (cadr x))))
-		       org-columns-compile-map)
-	       nil t))
+    (setq fmt (org-icompleting-read "Summary [none]: "
+				       (mapcar (lambda (x) (list (symbol-name (cadr x)))) org-columns-compile-map)
+				       nil t))
     (setq fmt (intern fmt)
 	  fun (cdr (assoc fmt (mapcar 'cdr org-columns-compile-map))))
     (if (eq fmt 'none) (setq fmt nil))
@@ -784,8 +958,7 @@ calc        function called on every element before summarizing. This is
 	(progn
 	  (setcar editp prop)
 	  (setcdr editp (list title width nil fmt nil fun)))
-      (setq cell (nthcdr (1- (current-column))
-			 org-columns-current-fmt-compiled))
+      (setq cell (nthcdr (1- n) org-columns-current-fmt-compiled))
       (setcdr cell (cons (list prop title width nil fmt nil
 			       (car fun) (cadr fun))
 			 (cdr cell))))
@@ -795,7 +968,7 @@ calc        function called on every element before summarizing. This is
 (defun org-columns-delete ()
   "Delete the column at point from columns view."
   (interactive)
-  (let* ((n (current-column))
+  (let* ((n (org-columns-current-column))
 	 (title (nth 1 (nth n org-columns-current-fmt-compiled))))
     (when (y-or-n-p
 	   (format "Are you sure you want to remove column \"%s\"? " title))
@@ -804,20 +977,21 @@ calc        function called on every element before summarizing. This is
 		  org-columns-current-fmt-compiled))
       (org-columns-store-format)
       (org-columns-redo)
-      (if (>= (current-column) (length org-columns-current-fmt-compiled))
-	  (backward-char 1)))))
+      (if (>= (org-columns-current-column)
+	      (length org-columns-current-fmt-compiled))
+          (org-columns-backward-char)))))
 
 (defun org-columns-edit-attributes ()
   "Edit the attributes of the current column."
   (interactive)
-  (let* ((n (current-column))
+  (let* ((n (org-columns-current-column))
 	 (info (nth n org-columns-current-fmt-compiled)))
     (apply 'org-columns-new info)))
 
 (defun org-columns-widen (arg)
   "Make the column wider by ARG characters."
   (interactive "p")
-  (let* ((n (current-column))
+  (let* ((n (org-columns-current-column))
 	 (entry (nth n org-columns-current-fmt-compiled))
 	 (width (or (nth 2 entry)
 		    (cdr (assoc (car entry) org-columns-current-maxwidths)))))
@@ -834,7 +1008,7 @@ calc        function called on every element before summarizing. This is
 (defun org-columns-move-right ()
   "Swap this column with the one to the right."
   (interactive)
-  (let* ((n (current-column))
+  (let* ((n (org-columns-current-column))
 	 (cell (nthcdr n org-columns-current-fmt-compiled))
 	 e)
     (when (>= n (1- (length org-columns-current-fmt-compiled)))
@@ -844,17 +1018,17 @@ calc        function called on every element before summarizing. This is
     (setcdr cell (cons e (cdr (cdr cell))))
     (org-columns-store-format)
     (org-columns-redo)
-    (forward-char 1)))
+    (org-columns-forward-char)))
 
 (defun org-columns-move-left ()
   "Swap this column with the one to the left."
   (interactive)
-  (let* ((n (current-column)))
+  (let* ((n (org-columns-current-column)))
     (when (= n 0)
       (error "Cannot shift this column further to the left"))
-    (backward-char 1)
+    (org-columns-backward-char)
     (org-columns-move-right)
-    (backward-char 1)))
+    (org-columns-backward-char)))
 
 (defun org-columns-store-format ()
   "Store the text version of the current columns format in appropriate place.
@@ -915,7 +1089,7 @@ Don't set this, this is meant for dynamic scoping.")
 (defun org-columns-update (property)
   "Recompute PROPERTY, and update the columns display for it."
   (org-columns-compute property)
-  (let (fmt val pos)
+  (let (fmt val pos face)
     (save-excursion
       (mapc (lambda (ov)
 	      (when (equal (org-overlay-get ov 'org-columns-key) property)
@@ -926,7 +1100,11 @@ Don't set this, this is meant for dynamic scoping.")
 					     (point-at-bol) 'org-summaries))))
 		  (setq fmt (org-overlay-get ov 'org-columns-format))
 		  (org-overlay-put ov 'org-columns-value val)
-		  (org-overlay-put ov 'display (format fmt val)))))
+                  (if (featurep 'xemacs)
+                      (progn
+                        (setq face (glyph-face (extent-end-glyph ov)))
+                        (org-overlay-display ov (format fmt val) face))
+                    (org-overlay-display ov (format fmt val))))))
 	    org-columns-overlays))))
 
 (defun org-columns-compute (property)
@@ -998,18 +1176,18 @@ Don't set this, this is meant for dynamic scoping.")
   "Construct the column display again."
   (interactive)
   (message "Recomputing columns...")
-  (let ((line (org-current-line))
-	(col (current-column)))
-    (save-excursion
-      (if (marker-position org-columns-begin-marker)
-	  (goto-char org-columns-begin-marker))
-      (org-columns-remove-overlays)
-      (if (org-mode-p)
-	  (call-interactively 'org-columns)
-	(org-agenda-redo)
-	(call-interactively 'org-agenda-columns)))
-    (org-goto-line line)
-    (move-to-column col))
+  (save-excursion
+    (if (marker-position org-columns-begin-marker)
+	(goto-char org-columns-begin-marker))
+    (org-columns-remove-overlays)
+    (if (org-mode-p)
+	(call-interactively 'org-columns)
+      (org-agenda-redo)
+      (call-interactively 'org-agenda-columns)))
+  (when (featurep 'xemacs)
+    (while (not (or (eolp)
+                    (member (extent-at (point)) org-columns-overlays)))
+      (forward-char)))
   (message "Recomputing columns...done"))
 
 (defun org-columns-not-in-agenda ()
@@ -1073,7 +1251,8 @@ Don't set this, this is meant for dynamic scoping.")
 	  sum))
        ((memq fmt '(checkbox checkbox-n-of-m checkbox-percent))
 	(if (equal s "[X]") 1. 0.000001))
-       (t (string-to-number s)))))
+       (t (string-to-number s)))
+    0))
 
 (defun org-columns-uncompile-format (cfmt)
   "Turn the compiled columns format back into a string representation."
@@ -1149,39 +1328,68 @@ empty rows, an empty row being one where all the column view
 specifiers except ITEM are empty.  This function returns a list
 containing the title row and all other rows.  Each row is a list
 of fields."
-  (save-excursion
-    (let* ((title (mapcar 'cadr org-columns-current-fmt-compiled))
-	   (re-comment (concat "\\*+[ \t]+" org-comment-string "\\>"))
-	   (re-archive (concat ".*:" org-archive-tag ":"))
-	   (n (length title)) row tbl)
-      (goto-char (point-min))
-      (while (re-search-forward "^\\(\\*+\\) " nil t)
-	(catch 'next
-	  (when (and (or (null maxlevel)
-			 (>= maxlevel
-			     (if org-odd-levels-only
-				 (/ (1+ (length (match-string 1))) 2)
-			       (length (match-string 1)))))
-		     (get-char-property (match-beginning 0) 'org-columns-key))
-	    (when (save-excursion
-		    (goto-char (point-at-bol))
-		    (or (looking-at re-comment)
-			(looking-at re-archive)))
-	      (org-end-of-subtree t)
-	      (throw 'next t))
-	    (setq row nil)
-	    (loop for i from 0 to (1- n) do
-		  (push
-		   (org-quote-vert
-		    (or (get-char-property (+ (match-beginning 0) i) 'org-columns-value-modified)
-			(get-char-property (+ (match-beginning 0) i) 'org-columns-value)
-			""))
-		   row))
-	    (setq row (nreverse row))
-	    (unless (and skip-empty-rows
-			 (eq 1 (length (delete "" (delete-dups (copy-sequence row))))))
-	      (push row tbl)))))
-      (append (list title 'hline) (nreverse tbl)))))
+  (if (featurep 'xemacs)
+      (save-excursion
+        (let* ((title (mapcar 'cadr org-columns-current-fmt-compiled))
+	       (re-comment (concat "\\*+[ \t]+" org-comment-string "\\>"))
+	       (re-archive (concat ".*:" org-archive-tag ":"))
+               (n (length title)) row tbl)
+          (goto-char (point-min))
+
+	  (while (re-search-forward "^\\(\\*+\\) " nil t)
+	    (catch 'next
+	      (when (and (or (null maxlevel)
+			     (>= maxlevel
+				 (if org-odd-levels-only
+				     (/ (1+ (length (match-string 1))) 2)
+				   (length (match-string 1)))))
+			 (get-char-property (match-beginning 0) 'org-columns-key))
+		(goto-char (match-beginning 0))
+		(when (save-excursion
+			(goto-char (point-at-bol))
+			(or (looking-at re-comment)
+			    (looking-at re-archive)))
+		  (org-end-of-subtree t)
+		  (throw 'next t))
+		(setq row nil)
+		(loop for i from 0 to (1- n) do
+		      (push
+		       (org-quote-vert
+			(or (get-char-property (point)
+					       'org-columns-value-modified)
+			    (get-char-property (point) 'org-columns-value)
+			    ""))
+		       row)
+		      (org-columns-forward-char))
+		(setq row (nreverse row))
+		(unless (and skip-empty-rows
+			     (eq 1 (length (delete "" (delete-dups (copy-sequence row))))))
+		  (push row tbl)))))
+          (append (list title 'hline) (nreverse tbl))))
+    (save-excursion
+      (let* ((title (mapcar 'cadr org-columns-current-fmt-compiled))
+             (n (length title)) row tbl)
+        (goto-char (point-min))
+        (while (and (re-search-forward "^\\(\\*+\\) " nil t)
+                    (or (null maxlevel)
+                        (>= maxlevel
+                            (if org-odd-levels-only
+                                (/ (1+ (length (match-string 1))) 2)
+                              (length (match-string 1))))))
+          (when (get-char-property (match-beginning 0) 'org-columns-key)
+            (setq row nil)
+            (loop for i from 0 to (1- n) do
+		  (push (or (get-char-property (+ (match-beginning 0) i)
+					       'org-columns-value-modified)
+			    (get-char-property (+ (match-beginning 0) i)
+					       'org-columns-value)
+			    "")
+			row))
+            (setq row (nreverse row))
+            (unless (and skip-empty-rows
+                         (eq 1 (length (delete "" (delete-dups row)))))
+              (push row tbl))))
+        (append (list title 'hline) (nreverse tbl))))))
 
 (defun org-dblock-write:columnview (params)
   "Write the column view table.
@@ -1189,18 +1397,18 @@ PARAMS is a property list of parameters:
 
 :width    enforce same column widths with <N> specifiers.
 :id       the :ID: property of the entry where the columns view
-	  should be built.  When the symbol `local', call locally.
-	  When `global' call column view with the cursor at the beginning
-	  of the buffer (usually this means that the whole buffer switches
-	  to column view).  When \"file:path/to/file.org\", invoke column
-	  view at the start of that file.  Otherwise, the ID is located
-	  using `org-id-find'.
+          should be built.  When the symbol `local', call locally.
+          When `global' call column view with the cursor at the beginning
+          of the buffer (usually this means that the whole buffer switches
+          to column view).  When \"file:path/to/file.org\", invoke column
+          view at the start of that file.  Otherwise, the ID is located
+          using `org-id-find'.
 :hlines   When t, insert a hline before each item.  When a number, insert
-	  a hline before each level <= that number.
+          a hline before each level <= that number.
 :vlines   When t, make each column a colgroup to enforce vertical lines.
 :maxlevel When set to a number, don't capture headlines below this level.
 :skip-empty-rows
-	  When t, skip rows where all specifiers other than ITEM are empty."
+          When t, skip rows where all specifiers other than ITEM are empty."
   (let ((pos (move-marker (make-marker) (point)))
 	(hlines (plist-get params :hlines))
 	(vlines (plist-get params :vlines))
@@ -1295,6 +1503,7 @@ and tailing newline characters."
 (defun org-insert-columns-dblock ()
   "Create a dynamic block capturing a column view table."
   (interactive)
+  (when (featurep 'xemacs) (org-columns-quit))
   (let ((defaults '(:name "columnview" :hlines 1))
 	(id (org-icompleting-read
 	     "Capture columns (local, global, entry with :ID: property) [local]: "
@@ -1333,7 +1542,7 @@ and tailing newline characters."
 		    (with-current-buffer (marker-buffer m)
 		      org-columns-default-format))))
      ((and (boundp 'org-columns-current-fmt)
-	   (local-variable-p 'org-columns-current-fmt)
+	   (local-variable-p 'org-columns-current-fmt (current-buffer))
 	   org-columns-current-fmt)
       (setq fmt org-columns-current-fmt))
      ((setq m (next-single-property-change (point-min) 'org-hd-marker))
@@ -1368,9 +1577,6 @@ and tailing newline characters."
 	(setq maxwidths (org-columns-get-autowidth-alist fmt cache))
 	(org-set-local 'org-columns-current-maxwidths maxwidths)
 	(org-columns-display-here-title)
-	(when (org-set-local 'org-columns-flyspell-was-active
-			     (org-bound-and-true-p flyspell-mode))
-	  (flyspell-mode 0))
 	(mapc (lambda (x)
 		(org-goto-line (car x))
 		(org-columns-display-here (cdr x)))
@@ -1383,11 +1589,10 @@ and tailing newline characters."
 This will add overlays to the date lines, to show the summary for each day."
   (let* ((fmt (mapcar (lambda (x)
 			(if (equal (car x) "CLOCKSUM")
-			    (list "CLOCKSUM" (nth 1 x) (nth 2 x) ":" 'add_times
-				  nil '+ nil)
-			  x))
+			    (list "CLOCKSUM" (nth 2 x) nil 'add_times nil '+ 'identity)
+			  (cdr x)))
 		      org-columns-current-fmt-compiled))
-	 line c c1 stype calc sumfunc props lsum entries prop v title)
+	 line c c1 stype calc sumfunc props lsum entries prop v)
     (catch 'exit
       (when (delq nil (mapcar 'cadr fmt))
 	;; OK, at least one summation column, it makes sense to try this
@@ -1411,10 +1616,9 @@ This will add overlays to the date lines, to show the summary for each day."
 		    (mapcar
 		     (lambda (f)
 		       (setq prop (car f)
-			     title (nth 1 f)
-			     stype (nth 4 f)
-			     sumfunc (nth 6 f)
-			     calc (or (nth 7 f) 'identity))
+			     stype (nth 3 f)
+			     sumfunc (nth 5 f)
+			     calc (or (nth 6 f) 'identity))
 		       (cond
 			((equal prop "ITEM")
 			 (cons prop (buffer-substring (point-at-bol)
@@ -1444,10 +1648,10 @@ This will add overlays to the date lines, to show the summary for each day."
 				     (t "")))
 			 (put-text-property 0 (length lsum) 'face 'bold lsum)
 			 (unless (eq calc 'identity)
-			   (put-text-property 0 (length lsum) 'org-computed t lsum))
+			     (put-text-property 0 (length lsum) 'org-computed t lsum))
 			 (cons prop lsum))))
 		     fmt))
-	      (org-columns-display-here props 'dateline)
+	      (org-columns-display-here props)
 	      (org-set-local 'org-agenda-columns-active t)))
 	  (if (bobp) (throw 'exit t))
 	  (beginning-of-line 0))))))
@@ -1491,7 +1695,6 @@ This will add overlays to the date lines, to show the summary for each day."
 
 
 (provide 'org-colview)
+(provide 'org-colview-xemacs)
 
-;; arch-tag: 61f5128d-747c-4983-9479-e3871fa3d73c
-
-;;; org-colview.el ends here
+;;; org-colview-xemacs.el ends here

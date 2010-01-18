@@ -1,0 +1,5 @@
+* Tasks
+#+SEQ_TODO: TODO(t) WAITING(w) APPT(a) DONE(d) CANCELLED(c) DEFERRED(f)
+#+TAGS: HOME(h) WORK(o) EMAIL(e) PHONE(p) READ(r)
+
+  

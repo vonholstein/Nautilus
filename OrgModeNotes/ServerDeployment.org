@@ -1,0 +1,14 @@
+* TODO Server Deployment
+  Deploy WDS solution to subnets
+** DONE Install and configure domain in 196
+   CLOSED: [2010-01-18 Mon 12:48]
+** DONE Configure WDS services in domain
+   CLOSED: [2010-01-18 Mon 12:49]
+   WDS services configured in epomfe subnet
+** TODO Run pilot
+*** DONE Anchit Deployment
+    CLOSED: [2010-01-18 Mon 12:50]
+*** DONE Arun Deployment
+    CLOSED: [2010-01-18 Mon 12:50]
+*** WAITING Ganesh Deployment
+*** WAITING Prashant Deployment
