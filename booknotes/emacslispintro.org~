@@ -1,4 +1,0 @@
-* Ch 6 - Narrowing and Widening
-** C-x n n , allows you to work on only part of the buffer any commands will work only on narrowed region
-** Some functions, like what-line work on the whole buffer even if called in a narrowed one; others, like count-line, work only on the narrowed buffer
-** 
