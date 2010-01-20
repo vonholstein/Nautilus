@@ -1,30 +1,59 @@
 * Work
-** TODO Deploying Servers in QA Lab
+** TODO Deploying Servers in QA Lab				   
    - State "TODO"       from ""           [2010-01-18 Mon 13:10]
 *** DONE Physical Server Deployment
     CLOSED: [2010-01-18 Mon 13:12]
-*** TODO Server Hardware Configuration
-**** TODO Talk to lab team and patch ports in qa lab
+*** WAITING Server Hardware Configuration
+    - State "WAITING"    from "TODO"       [2010-01-20 Wed 11:28]
+**** DONE Talk to lab team and patch ports in qa lab
+     CLOSED: [2010-01-20 Wed 11:16]
      - State "TODO"       from "WAITING"    [2010-01-19 Tue 12:18]
      - State "WAITING"    from "WAITING"    [2010-01-19 Tue 09:53] \\
        Waiting for lab team to come in before patching
      - State "WAITING"    from "NEXT"       [2010-01-18 Mon 13:30] \\
        Waiting for lab response to request for port configuration and lan cables
      - State "NEXT"       from "NEXT"       [2010-01-18 Mon 13:16]
-**** TODO Connect machines to power
-**** TODO Get switch and lan cables and connect those to servers
-**** NEXT Connect machines to KVM
+**** DONE Connect machines to power
+     CLOSED: [2010-01-20 Wed 11:16]
+**** DONE Get switch and lan cables and connect those to servers
+     CLOSED: [2010-01-20 Wed 11:16]
+**** WAITING Connect machines to KVM
+     - State "WAITING"    from "NEXT"       [2010-01-20 Wed 11:27] \\
+       Waiting for Harsha to come up with spare cables
      - State "NEXT"       from "TODO"       [2010-01-18 Mon 13:31]
-**** TODO Verify that machines boot up
+**** WAITING Verify that machines boot up
+     - State "WAITING"    from "NEXT"       [2010-01-20 Wed 11:28] \\
+       Verified 2 server bootups, waiting till deployment time in others
+     - State "NEXT"       from "TODO"       [2010-01-20 Wed 11:17]
 *** TODO Server OS installation
-**** TODO Hyper V Deployment
-**** TODO ESX 4.0 Deployment
-***** NEXT Burn ESX 4.0
+**** DONE Hyper V Deployment
+     CLOSED: [2010-01-20 Wed 11:17]
+**** WAITING ESX 4.0 Deployment Automation
+     - State "WAITING"    from "TODO"       [2010-01-20 Wed 13:44]
+***** DONE Burn ESX 4.0
+      CLOSED: [2010-01-20 Wed 11:21]
       - State "NEXT"       from "TODO"       [2010-01-19 Tue 12:21] \\
         Burn commencing
-**** TODO ESX 4.0 Deployment
+***** WAITING Get ESX 4.0 Update 1 License Keys
+      - State "WAITING"    from "TODO"       [2010-01-20 Wed 11:23] \\
+        Waiting for Lab team to respond with keys
+***** WAITING Download and burn ESX 4.0 Update 1
+      - State "WAITING"    from "TODO"       [2010-01-20 Wed 13:44] \\
+        Waiting for Keys
+***** WAITING Deploy ESX 4.0 Update 1
+      - State "WAITING"    from "TODO"       [2010-01-20 Wed 13:44] \\
+        Waiting for previous
+**** WAITING ESX 4.0 Deployment Team use
+     - State "WAITING"    from "TODO"       [2010-01-20 Wed 13:44] \\
+       Waiting for keys
+**** WAITING ESX 4.0 Deployment Sustaining
+     - State "WAITING"    from "TODO"       [2010-01-20 Wed 13:45] \\
+       Waiting for keys
 **** TODO XenServer 5.5 Deployment
-** TODO Deployment Solution
+***** TODO Download and Burn XenServer 5.5 Update 1		   :maintask:
+** WAITING Deployment Solution
+   - State "WAITING"    from "TODO"       [2010-01-20 Wed 11:23] \\
+     Waiting for new boxes
    Deploy WDS solution to subnets
 *** DONE Install and configure domain in 196
     CLOSED: [2010-01-18 Mon 12:48]
@@ -47,6 +76,69 @@
 *** WAITING Deploy WDS in new servers in 196 subnet
     - State "WAITING"    from "TODO"       [2010-01-19 Tue 10:48] \\
       Waiting for new servers to arrive
-** Automation
+** Automation			
+** TODO Archetypes						   
+*** TODO Research archetypes
+**** TODO Read twiki page
+** TODO ePO Training
+*** TODO Finalize slides on features
+Move MA slide to beginning 
+Computer Management
+Agent Handler
+Policy Management
+Applied Policies
+User Based Policies - PAR
+Data Channel
+RSD
+Repository Management
+Dashboards & Queries
+Automatic Response
+Multi Server Rollup Reporting & Querying
+User Management
+Permission Sets
+Extensions
+AD Integration
+Server Settings
+Tag Management
+Server Tasks
+Logs
+
+Sequence - Day 1
+1. ePO + MA Intro - Murali 15 min 
+2. Computer Management + Policy Management + Applied Policies + AD- 30 min
+3. Tagging - 5 min
+4. Repository Management - 10 min
+5. Dashboards & Queries - 10 min
+6. Extensions - 5 min
+7. Server Settings - 10 min
+8. Rollup Reporting
+
+Sequence - Day 2
+1. Agent Handler
+2. Automatic Response
+3. Users & Permissions
+4. Server Tasks
+5. Logs
+6. RSD
+7. Data Channel
+8. UBP
 
 
+
+*** TODO Setup ePO environment
+**** DONE Install ePO Patch 1 in ESX 4.0 guest
+     CLOSED: [2010-01-20 Wed 14:49]
+**** DONE Have 3 managed systems in server one
+     CLOSED: [2010-01-20 Wed 14:51]
+**** DONE Install ePO Patch 1 in another ESX 4.0 guest
+     CLOSED: [2010-01-20 Wed 14:50]
+**** DONE Have 2 agents managed by this guest
+     CLOSED: [2010-01-20 Wed 15:20]
+**** DONE Setup FTP,HTTP,UNC distributed repositories and source sites
+     CLOSED: [2010-01-20 Wed 15:20]
+**** TODO Check domain browse
+**** DONE Add ePO registered server and verify
+     CLOSED: [2010-01-20 Wed 15:23]
+**** DONE Add LDAP registered server and verify
+     CLOSED: [2010-01-20 Wed 15:23]
+**** TODO Setup UBP
